@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 DEFAULT_NETWORK=mainnet
 
