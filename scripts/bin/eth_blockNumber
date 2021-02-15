@@ -1,0 +1,6 @@
+#!/bin/bash
+JSON='{"method":"eth_blockNumber", "params":[], "id":1, "jsonrpc":"2.0"}'
+CWD=$(dirname $(which $0))
+DOCKER_IP=$($CWD/dockerip geth)
+
+curl -s --data "$JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545 | sed -E -n 's/.*result":"(\w+)".*/print(\1)/p' | xargs -i python -c{}

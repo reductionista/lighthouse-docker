@@ -1,0 +1,6 @@
+#!/bin/bash
+ETH1_WALLET="$1"
+CWD=$(dirname $BASH_SOURCE)
+. $CWD/sendcmd eth_getBalance $ETH1_WALLET latest
+echo "wei"
+echo "(1000000000000000000 wei = 1 ETH)"

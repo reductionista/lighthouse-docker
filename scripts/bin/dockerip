@@ -1,0 +1,20 @@
+#!/bin/bash
+if [ -z "$1" ]
+then
+	echo "Usage: $0 geth|beacon|validator|CONTAINER"
+	exit -1
+elif [ "$1" = "geth" ]
+then
+	CONTAINER="lighthouse-docker_geth_1"
+elif [ "$1" = "beacon" ]
+then
+	CONTAINER="lighthouse-docker_beacon_node_1"
+
+elif [ "$1" = "validator" ]
+then
+	CONTAINER="lighthouse-docker_validator_client_1"
+else
+	CONTAINER="$1"
+fi
+export CONTAINER
+docker network inspect lighthouse-docker_default | jq ".[0].Containers[] | select(.Name  == \"$CONTAINER\").IPv4Address" | sed -n -E 's/"(.*)\/[0-9]+"/\1/p'

@@ -1,0 +1,15 @@
+#!/bin/bash
+INPUT_JSON=$(cat)
+CWD=$(dirname $(which $0))
+DOCKER_IP=$($CWD/dockerip geth)
+
+echo Sending request:
+echo     $INPUT_JSON
+echo
+echo "Raw json result:"
+
+OUTPUT_JSON=$(curl -s --data "$INPUT_JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545)
+echo $OUTPUT_JSON
+echo
+echo "Decimal Result:"
+echo "$OUTPUT_JSON" | sed -E -n 's/.*result":"(\w+)".*/-c print(\1)/p' | xargs python

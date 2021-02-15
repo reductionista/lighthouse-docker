@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it lighthouse-docker_validator_client_1 /bin/bash
