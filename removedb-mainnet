@@ -1,0 +1,1 @@
+docker run -rm -it -v/usr/local/lighthouse/lighthouse-docker/geth-data:/root/.ethereum -v/blockdata/ancient-data/mainnet:/root/.ethereum/geth/chaindata/ancient ethereum/client-go:stable --nousb removedb

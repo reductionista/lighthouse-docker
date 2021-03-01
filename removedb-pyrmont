@@ -1,0 +1,1 @@
+docker run --rm -it -v/blockdata/geth-data:/root/.ethereum -v/blockdata/ancient-data/goerli:/root/.ethereum/geth/goerli/chaindata/ancient ethereum/client-go:stable --goerli --nousb removedb
