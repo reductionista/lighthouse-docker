@@ -33,7 +33,7 @@ services:
         entrypoint: /bin/sh
         volumes:
             - ./geth-data:/root/.ethereum
-            - /blockdata/ancient-data/mainnet:/root/.ethereum/geth/chaindata/ancient
+            - /blockdata/ancient-data/mainnet:/ancient
             - /blockdata/scripts:/root/scripts
         ports:
             - 30303:30303/tcp

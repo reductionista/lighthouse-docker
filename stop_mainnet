@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-mainnet.yml --env-file=mainnet.env down
