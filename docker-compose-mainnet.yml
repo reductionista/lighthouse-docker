@@ -35,6 +35,7 @@ services:
             - ./geth-data:/root/.ethereum
             - /blockdata/ancient-data/mainnet:/ancient
             - /blockdata/scripts:/root/scripts
+            - /blockdata:/blockdata
         ports:
             - 30303:30303/tcp
             - 30303:30303/udp

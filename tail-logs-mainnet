@@ -1,1 +1,1 @@
-docker-compose -f docker-compose-mainnet.yml logs --follow
+docker-compose -f docker-compose-mainnet.yml logs --tail 5000 --follow
