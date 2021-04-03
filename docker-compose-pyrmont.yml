@@ -28,16 +28,16 @@ services:
         env_file: pyrmont.env
         command: sh /root/scripts/start-validator-client.sh
         restart: on-failure
-    geth:
-        image: ethereum/client-go:${GETH_VERSION}
-        entrypoint: /bin/sh
-        volumes:
-            - /blockdata/geth-data:/root/.ethereum
-            - /blockdata/ancient-data/goerli:/ancient
-            - /blockdata/scripts:/root/scripts
-        ports:
-            - 30303:30303/tcp
-            - 30303:30303/udp
-        env_file: pyrmont.env
-        command: /root/scripts/start-geth.sh
-        restart: on-failure
+        #    geth:
+        #image: ethereum/client-go:${GETH_VERSION}
+        #entrypoint: /bin/sh
+        #volumes:
+        #    - /blockdata/geth-data:/root/.ethereum
+        #    - /blockdata/ancient-data/goerli:/ancient
+        #    - /blockdata/scripts:/root/scripts
+        #ports:
+        #    - 30303:30303/tcp
+        #    - 30303:30303/udp
+        #env_file: pyrmont.env
+        #command: /root/scripts/start-geth.sh
+        #restart: on-failure
