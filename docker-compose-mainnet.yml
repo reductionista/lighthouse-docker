@@ -4,8 +4,8 @@ services:
     beacon_node:
         image: sigp/lighthouse:${LIGHTHOUSE_VERSION}
         volumes:
+            - ./scripts:/root/scripts
             - /blockdata/lighthouse-data:/root/.lighthouse
-            - /blockdata/scripts:/root/scripts
         ports:
             - 5052:5052/tcp
             - 5053:5053/tcp
@@ -18,8 +18,8 @@ services:
     validator_client:
         image: sigp/lighthouse:${LIGHTHOUSE_VERSION}
         volumes:
+            - ./scripts:/root/scripts
             - /blockdata/lighthouse-data:/root/.lighthouse
-            - /blockdata/scripts:/root/scripts
             - /blockdata/validator_keys:/root/validator_keys
         depends_on:
             - beacon_node
@@ -28,17 +28,18 @@ services:
         env_file: mainnet.env
         command: sh /root/scripts/start-validator-client.sh
         restart: on-failure
-    geth:
-        image: ethereum/client-go:${GETH_VERSION}
-        entrypoint: /bin/sh
-        volumes:
-            - ./geth-data:/root/.ethereum
-            - /blockdata/ancient-data/mainnet:/ancient
-            - /blockdata/scripts:/root/scripts
-            - /blockdata:/blockdata
-        ports:
-            - 30303:30303/tcp
-            - 30303:30303/udp
-        env_file: mainnet.env
-        command: /root/scripts/start-geth.sh
-        restart: on-failure
+
+        #    geth:
+        #image: ethereum/client-go:${GETH_VERSION}
+        #entrypoint: /bin/sh
+        #volumes:
+        #    - ./geth-data:/root/.ethereum
+        #    - /blockdata/ancient-data/mainnet:/ancient
+        #    - /blockdata/scripts:/root/scripts
+        #    - /blockdata:/blockdata
+        #ports:
+        #    - 30303:30303/tcp
+        #    - 30303:30303/udp
+        #env_file: mainnet.env
+        #command: /root/scripts/start-geth.sh
+        #restart: on-failure
