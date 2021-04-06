@@ -3,12 +3,16 @@ INPUT_JSON=$(cat)
 CWD=$(dirname $(which $0))
 DOCKER_IP=$($CWD/dockerip geth)
 
-echo Sending request:
+ALCHEMY_URL=https://eth-goerli.alchemyapi.io/v2/uiyxElvWxq4hvYlbcii7ypMykQdJ168m
+
+echo Sending request: "    (to $ALCHEMY_IP )"
+
 echo     $INPUT_JSON
 echo
 echo "Raw json result:"
 
-OUTPUT_JSON=$(curl -s --data "$INPUT_JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545)
+#OUTPUT_JSON=$(curl -s --data "$INPUT_JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545)
+OUTPUT_JSON=$(curl -s --data "$INPUT_JSON" -H "Content-Type: application/json" -X POST $ALCHEMY_URL)
 echo $OUTPUT_JSON
 echo
 echo "Decimal Result:"

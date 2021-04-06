@@ -1,2 +1,2 @@
 cd $(dirname $0)
-docker-compose -f docker-compose-mainnet.yml down
+docker-compose -f docker-compose-mainnet.yml --env-file=mainnet.env down

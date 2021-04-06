@@ -2,5 +2,7 @@
 JSON='{"method":"eth_blockNumber", "params":[], "id":1, "jsonrpc":"2.0"}'
 CWD=$(dirname $(which $0))
 DOCKER_IP=$($CWD/dockerip geth)
+ALCHEMY_URL=https://eth-goerli.alchemyapi.io/v2/uiyxElvWxq4hvYlbcii7ypMykQdJ168m
 
-curl -s --data "$JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545 | sed -E -n 's/.*result":"(\w+)".*/print(\1)/p' | xargs -i python -c{}
+#curl -s --data "$JSON" -H "Content-Type: application/json" -X POST http://$DOCKER_IP:8545 | sed -E -n 's/.*result":"(\w+)".*/print(\1)/p' | xargs -i python -c{}
+curl -s --data "$JSON" -H "Content-Type: application/json" -X POST $ALCHEMY_URL | sed -E -n 's/.*result":"(\w+)".*/print(\1)/p' | xargs -i python -c{}
