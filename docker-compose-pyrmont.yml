@@ -4,8 +4,8 @@ services:
     beacon_node:
         image: sigp/lighthouse:${LIGHTHOUSE_VERSION}
         volumes:
-            - /blockdata/lighthouse-data:/root/.lighthouse
-            - /blockdata/scripts:/root/scripts
+            - ./scripts:/root/scripts
+            - /blockdata/pyrmont/lighthouse-data:/root/.lighthouse
         ports:
             - 5052:5052/tcp
             - 5053:5053/tcp
@@ -18,9 +18,9 @@ services:
     validator_client:
         image: sigp/lighthouse:${LIGHTHOUSE_VERSION}
         volumes:
-            - /blockdata/lighthouse-data:/root/.lighthouse
-            - /blockdata/scripts:/root/scripts
-            - ./validator_keys:/root/validator_keys
+            - ./scripts:/root/scripts
+            - /blockdata/pyrmont/lighthouse-data:/root/.lighthouse
+            - /blockdata/pyrmont/validator_keys:/root/validator_keys
         depends_on:
             - beacon_node
         ports:
@@ -32,9 +32,9 @@ services:
         #image: ethereum/client-go:${GETH_VERSION}
         #entrypoint: /bin/sh
         #volumes:
-        #    - /blockdata/geth-data:/root/.ethereum
-        #    - /blockdata/ancient-data/goerli:/ancient
-        #    - /blockdata/scripts:/root/scripts
+        #    - ./scripts:/root/scripts
+        #    - /blockdata/pyrmont/geth-data:/root/.ethereum
+        #    - /blockdata/pyrmont/ancient-data:/ancient
         #ports:
         #    - 30303:30303/tcp
         #    - 30303:30303/udp
